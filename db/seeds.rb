@@ -12,16 +12,20 @@ User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 
+# 5.times do
+#   User.create(name: Faker::Name)
+# end
+
 n = 10
 n.times do
-  u = User.create(name: Faker::Name)
+  u = User.create(name: Faker::Name.name)
   p = u.posts.create(
     title: Faker::Lorem.paragraph,
     body: Faker::Lorem.paragraph,
     category: Faker::Lorem.word
   )
-  p.comments.create(
+  p.comments.create!(
     body: Faker::Lorem.paragraph,
-    user_id: Faker::Number.between(from: 1, to: n)
+    user_id: Faker::Number.between(from: 2, to: User.count)
   )
 end
