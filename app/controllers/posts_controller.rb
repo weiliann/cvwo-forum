@@ -1,16 +1,21 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show update destroy ]
+  before_action :set_post, only: %i[show update destroy]
 
   # GET /posts
   def index
     @posts = Post.all
-
-    render json: @posts
+    render json: @posts.to_json(
+      only: %i[id title body category],
+      include: { user: { only: :name } }
+    )
   end
 
   # GET /posts/1
   def show
-    render json: @post
+    render json: @post.to_json(
+      only: %i[id title body category],
+      include: { user: { only: :name } }
+    )
   end
 
   # POST /posts
