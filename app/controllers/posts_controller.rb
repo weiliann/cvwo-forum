@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show update destroy]
 
   # GET /posts
+  # serialise json to only include relevant information
   def index
     @posts = Post.all
     render json: @posts.to_json(
@@ -11,10 +12,11 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1
+  # include comments when showing single post
   def show
     render json: @post.to_json(
       only: %i[id title body category],
-      include: { user: { only: :name } }
+      include: { user: { only: :name }, comments: { only: %i[id body user_id] } }
     )
   end
 
