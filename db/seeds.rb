@@ -20,12 +20,14 @@ n = 10
 n.times do
   u = User.create(name: Faker::Name.name)
   p = u.posts.create(
-    title: Faker::Lorem.paragraph,
+    title: Faker::Lorem.sentence,
     body: Faker::Lorem.paragraph,
     category: Faker::Lorem.word
   )
-  p.comments.create!(
-    body: Faker::Lorem.paragraph,
-    user_id: Faker::Number.between(from: 2, to: User.count)
-  )
+  Faker::Number.within(range: 3..5).times do
+    p.comments.create!(
+      body: Faker::Lorem.paragraph,
+      user_id: Faker::Number.between(from: 1, to: User.count)
+    )
+  end
 end
