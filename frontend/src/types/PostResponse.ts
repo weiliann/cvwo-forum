@@ -1,4 +1,4 @@
-interface PostResponse {
+export default interface PostResponse {
   id: number,
   title: string,
   body: string,
@@ -6,4 +6,12 @@ interface PostResponse {
   user: { name: string},
 }
 
-export default PostResponse;
+export interface PostCommentResponse extends PostResponse {
+  comments: CommentResponse[] 
+}
+
+export interface CommentResponse {
+  id: number,
+  body: string,
+  user_id: number,
+} 
