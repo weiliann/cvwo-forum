@@ -10,7 +10,7 @@ function PostComment() {
     <>
       <NavBar />
       <Post author={name} title={title} category={category} body={body}/>
-      {comments.map(comment => <Comment comment_id={comment.id} body={comment.body} name={name} />)}
+      {comments.map(comment => <Comment key={comment.id} comment_id={comment.id} body={comment.body} name={name} />)}
     </>
   )
 }

@@ -12,7 +12,7 @@ function App() {
       <NavBar />
       <div className="body">
         {allPosts.map(post => (
-          <PostCard post_id={post.id} title={post.title} name={post.user.name}/>
+          <PostCard key={post.id} post_id={post.id} title={post.title} name={post.user.name}/>
         ))}
       </div>
     </>
