@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { postsLoader, postCommentLoader } from "./actions/postActions.tsx"
+import { postsLoader, postCommentLoader, submitPost } from "./actions/postActions.tsx"
 import PostComment from './components/PostComment.tsx'
+import SubmitForm from './components/SubmitForm.tsx'
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,13 @@ const router = createBrowserRouter([
     path: "/comments/:id",
     element: <PostComment />, 
     loader: postCommentLoader,
-  }
+  },
+  {
+    path: "/submit",
+    element: <SubmitForm />,
+    action: submitPost,
+
+  },
 ])
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
