@@ -1,4 +1,5 @@
 import '../App.css'
+import DeleteBtn from './DeleteBtn';
 
 type PostParams = {
   author: string,
@@ -10,12 +11,15 @@ type PostParams = {
 // The head of the page
 function Post({ author, title, category, body }: PostParams) {
   return (
-    <div className="card">
-      <p>{author}</p>
-      <h2>{title}</h2>
-      <p>{category}</p>
-      <p>{body}</p>
-    </div>
+    <>
+     <div className="card">
+       <p>{author}</p>
+       <h2>{title}</h2>
+       <p>{category}</p>
+       <p>{body}</p>
+     </div>
+     <DeleteBtn />
+    </>
   )
 }
 

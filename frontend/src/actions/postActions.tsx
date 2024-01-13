@@ -56,3 +56,16 @@ function hasErrors(postData: ObjFromEntries): boolean | PostData {
   }
   return Object.keys(errors).length ? errors : false; 
 }
+
+// export async function destroyAction() {
+export const destroyAction: ActionFunction = async({ params }) => {
+  const post_id = params.id;
+  const response = await fetch(`http://localhost:3000/posts/${post_id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    return redirect("/");
+  } else {
+    return false;
+  }
+} 
