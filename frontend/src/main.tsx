@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { postsLoader, postCommentLoader, submitPost, destroyAction, editPost } from "./actions/postActions.tsx"
+import { postsLoader, postCommentLoader, submitPost, destroyAction, editPost, newComment } from "./actions/postActions.tsx"
 import PostComment from './components/PostComment.tsx'
 import SubmitForm from './components/SubmitForm.tsx'
 import EditPage from './components/EditPage.tsx'
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
         path: "destroy",
         action: destroyAction, 
         element: <></> 
+      },
+      {
+        path: "newComment",
+        action: newComment,
       },
     ],
   },

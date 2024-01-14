@@ -29,8 +29,7 @@ export default function FormTemplate({ errors, fields }: FormParams) {
         {isObj(errors) && <span>{errors.category}</span>}
       </p>
       <p>
-        <input type="text" name="user_id" defaultValue={fields?.user_id}/>
-        {/* <input type="text" name="user_id" placeholder="temporary soln for id" defaultValue={fields.user_id}/> */}
+        <input type={fields ? "hidden" : "text"} name="user_id" placeholder="temp soln for user_id" value={fields?.user_id}/>
         {isObj(errors) && <span>{errors.user_id}</span>}
       </p> 
 

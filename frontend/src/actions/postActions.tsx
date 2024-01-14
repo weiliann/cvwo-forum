@@ -89,3 +89,27 @@ export const destroyAction: ActionFunction = async({ params }) => {
     return false;
   }
 } 
+
+export const newComment: ActionFunction = async({ request, params }) => {
+  const formData = await request.formData();
+  formData.append("post_id", `${params.id}`);
+  const postData = Object.fromEntries(formData);
+  const errors = hasErrors(postData);
+  if (errors) return errors;
+  const response = await fetch("http://localhost:3000/comments", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postData)
+  });
+  return null;
+  if (response.ok) {
+    return redirect(`/comments/${postData.user_id}`);
+  } else {
+    // refactor in future
+    const res = await response.json() ;
+    console.log(res);
+    return false; 
+  }
+}
