@@ -3,7 +3,7 @@ export default interface PostResponse {
   title: string,
   body: string,
   category: string,
-  user: { name: string},
+  user: { name: string, id: number},
 }
 
 export interface PostCommentResponse extends PostResponse {
