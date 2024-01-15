@@ -104,8 +104,34 @@ export const newComment: ActionFunction = async({ request, params }) => {
     body: JSON.stringify(postData)
   });
   return null;
+}
+
+export const handleAccount: ActionFunction = async({ request }) => {
+  console.log('in')
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData);
+  const errors = hasErrors(postData);
+  if (errors) return errors;
+
+  let user_id;
+  let response;
+  const user_name = postData.name;
+  if (request.method === "PATCH") {
+    response = await fetch(`http://localhost:3000/users/find/${user_name}`)
+  } else {
+      response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postData)
+      });
+  }
   if (response.ok) {
-    return redirect(`/comments/${postData.user_id}`);
+    const user_json = await response.json() as {id: number} 
+    user_id = user_json.id.toString();
+    sessionStorage.setItem('user_id', user_id)
+    return redirect("/");
   } else {
     // refactor in future
     const res = await response.json() ;
@@ -113,3 +139,5 @@ export const newComment: ActionFunction = async({ request, params }) => {
     return false; 
   }
 }
+
+

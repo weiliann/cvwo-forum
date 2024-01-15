@@ -9,6 +9,9 @@ export default function NavBar() {
         <Link to="/submit">
           <button type="button">Create new post</button>
         </Link>
+        <Link to="/login">
+          <button type="button">Log in</button>
+        </Link>
       </div>
     </nav>
   )
