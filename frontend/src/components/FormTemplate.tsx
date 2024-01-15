@@ -11,6 +11,7 @@ type FormParams = {
 }
 
 export default function FormTemplate({ errors, fields }: FormParams) {
+  const user_id = sessionStorage.getItem("user_id")
   return (
     <>
       <p>
@@ -29,8 +30,8 @@ export default function FormTemplate({ errors, fields }: FormParams) {
         {isObj(errors) && <span>{errors.category}</span>}
       </p>
       <p>
-        <input type={fields ? "hidden" : "text"} name="user_id" placeholder="temp soln for user_id" value={fields?.user_id}/>
-        {isObj(errors) && <span>{errors.user_id}</span>}
+        <input type="hidden" name="user_id" value={user_id || ""} />
+        {user_id ? '' : <span>Must be logged in to create post</span> }
       </p> 
 
       <button type="submit">Submit</button>
