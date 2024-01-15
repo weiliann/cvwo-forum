@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Account from "./Account";
 export default function NavBar() {
   return (
     <nav>
@@ -9,9 +10,7 @@ export default function NavBar() {
         <Link to="/submit">
           <button type="button">Create new post</button>
         </Link>
-        <Link to="/login">
-          <button type="button">Log in</button>
-        </Link>
+        <Account />
       </div>
     </nav>
   )

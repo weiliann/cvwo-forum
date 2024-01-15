@@ -1,4 +1,4 @@
-import { redirect } from "react-router-dom";
+import { json, redirect } from "react-router-dom";
 import type { LoaderFunction, ActionFunction } from "react-router";
 
 export async function postsLoader() {
@@ -107,12 +107,8 @@ export const newComment: ActionFunction = async({ request, params }) => {
 }
 
 export const handleAccount: ActionFunction = async({ request }) => {
-  console.log('in')
   const formData = await request.formData();
   const postData = Object.fromEntries(formData);
-  const errors = hasErrors(postData);
-  if (errors) return errors;
-
   let user_id;
   let response;
   const user_name = postData.name;
@@ -127,15 +123,12 @@ export const handleAccount: ActionFunction = async({ request }) => {
         body: JSON.stringify(postData)
       });
   }
-  if (response.ok) {
-    const user_json = await response.json() as {id: number} 
-    user_id = user_json.id.toString();
+  const json_response = await response.json() as {id: number};
+  if (json_response) {
+    user_id = json_response.id.toString();
     sessionStorage.setItem('user_id', user_id)
     return redirect("/");
   } else {
-    // refactor in future
-    const res = await response.json() ;
-    console.log(res);
     return false; 
   }
 }
