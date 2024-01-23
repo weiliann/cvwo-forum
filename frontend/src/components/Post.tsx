@@ -2,22 +2,31 @@ import '../App.css'
 import DeleteBtn from './DeleteBtn';
 import EditBtn from './EditBtn';
 import type { PostParams } from '../types/PostParams';
-// The head of the page
+import { Box, Container, Stack, Typography } from '@mui/material';
 
+// The head of the page
 function Post(postData: PostParams) {
   const { author, title, category, body } = postData;
   return (
     <>
-     <div className="card">
-       <p>{author}</p>
-       <h2>{title}</h2>
-       <p>{category}</p>
-       <p>{body}</p>
-     </div>
-     <div>
-        <DeleteBtn />
-        <EditBtn postData={postData}/>
-     </div>
+      <Container maxWidth="md" sx={{ mt:4, bgcolor: "gray", p:1, border: "1px solid black"}}>
+        <Stack gap={1}>
+          <Typography variant='body2'>Posted by {author}</Typography>
+          <Typography variant='h2'>{title}</Typography>
+          <Typography variant='body2' sx={{ bgcolor: "teal", width: "fit-content", p:"2px" }}>{category}</Typography>
+          <Typography>{body}</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "end",
+              gap: 1
+            }}
+          >
+            <DeleteBtn />
+            <EditBtn postData={postData}/>
+          </Box>
+        </Stack>
+      </Container>
     </>
   )
 }
