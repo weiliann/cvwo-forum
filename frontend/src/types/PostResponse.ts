@@ -14,4 +14,7 @@ export interface CommentResponse {
   id: number,
   body: string,
   user_id: number,
+  user: {
+    name: string
+  },
 } 

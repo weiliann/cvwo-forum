@@ -16,7 +16,14 @@ class PostsController < ApplicationController
   def show
     render json: @post.to_json(
       only: %i[id title body category],
-      include: { user: { only: %i[name id] }, comments: { only: %i[id body user_id] } }
+      # include: { user: { only: %i[name id] }, comments: { only: %i[id body user_id  ] } }
+      include: {
+        user: { only: %i[name id] },
+        comments: {
+          only: %i[id body user_id],
+          include: { user: { only: %i[name] } }
+        }
+      }
     )
   end
 
