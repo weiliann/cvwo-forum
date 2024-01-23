@@ -1,10 +1,11 @@
+import Button from "@mui/material/Button";
 import { Form } from "react-router-dom";
 
 export default function DeleteBtn() {
   return (
     <>
       <Form method="post" action="destroy" onSubmit={e => confirmDelete(e)}>
-        <button type="submit">Delete Post</button>
+        <Button size="small" variant="contained" type="submit">Delete Post</Button>
       </Form>
     </>
   )
