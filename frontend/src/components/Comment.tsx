@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material"
+import { Card, Stack, Typography } from "@mui/material"
 import "../App.css"
 import { AccountCircle } from "@mui/icons-material"
 interface CommentProps {
@@ -8,12 +8,14 @@ interface CommentProps {
 }
 export default function Comment({ comment_id, body, name }: CommentProps) {
   return (
-    <Stack direction="row" bgcolor="secondary.light" gap={1} sx={{ p: 2 }}>
-      <AccountCircle />
-      <Stack spacing={2}>
-        <Typography variant="body2">{name}</Typography>
-        <Typography>{body}</Typography>
+    <Card variant="outlined">
+      <Stack direction="row" bgcolor="secondary.light" gap={1} sx={{ p: 2 }}>
+        <AccountCircle />
+        <Stack spacing={2}>
+          <Typography variant="body2">{name}</Typography>
+          <Typography>{body}</Typography>
+        </Stack>
       </Stack>
-    </Stack>
+    </Card>
   )
 }
