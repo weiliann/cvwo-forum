@@ -65,7 +65,7 @@ type ObjFromEntries = {
   [k: string]: FormDataEntryValue
 }
 
-// returns false if no error else error object with error messages 
+// returns false if no error else the error object with error messages 
 function hasErrors(postData: ObjFromEntries): boolean | PostData {
   const errors: PostData = {}
   // currently only check for presence
@@ -106,15 +106,22 @@ export const newComment: ActionFunction = async({ request, params }) => {
   return null;
 }
 
+export type LoginError = {
+  login_error?: string,
+  register_error?: string
+}
 export const handleAccount: ActionFunction = async({ request }) => {
   const formData = await request.formData();
   const postData = Object.fromEntries(formData);
   let user_id;
   let response;
+  const errors: LoginError = {};
   const user_name = postData.name;
   if (request.method === "PATCH") {
+    // attempt to login
     response = await fetch(`http://localhost:3000/users/find/${user_name}`)
   } else {
+    // create new account
       response = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
@@ -123,13 +130,24 @@ export const handleAccount: ActionFunction = async({ request }) => {
         body: JSON.stringify(postData)
       });
   }
-  const json_response = await response.json() as {id: number};
-  if (json_response) {
+  const json_response = await response.json() as {id: number, name: string[]};
+  // response is null if invalid login, will have some errors when trying to register with existing username  
+  
+  if (json_response === null) {
+    // sets error msg for invalid login
+    errors["login_error"] = "Username does not exist";
+  } else if (!json_response.id) {
+    // error msg for failure to register 
+    errors["register_error"] = json_response.name[0];
+  }
+
+  if (Object.keys(errors).length !== 0) {
+    console.log(errors)
+    return errors;
+  } else {
     user_id = json_response.id.toString();
     sessionStorage.setItem('user_id', user_id)
     return redirect("/");
-  } else {
-    return false; 
   }
 }
 

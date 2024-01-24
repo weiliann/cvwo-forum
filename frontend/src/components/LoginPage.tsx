@@ -1,8 +1,10 @@
-import { Form } from "react-router-dom";
+import { Form, useActionData } from "react-router-dom";
 import NavBar from "./NavBar";
 import { Box, Button, Divider, Stack, TextField, Typography } from "@mui/material";
+import type { LoginError } from "../actions/postActions"
 
 export default function LoginPage() {
+  const errors = useActionData() as LoginError | Response
   return (
     <>
       <NavBar />
@@ -15,7 +17,6 @@ export default function LoginPage() {
           alignItems: "center"
         }}
       >
-
         <Stack
           spacing={3}
           sx={{ width: "50vw" }}
@@ -31,6 +32,9 @@ export default function LoginPage() {
                 label="Username"
                 name="name"
                 variant="outlined"
+                required
+                error={isError(errors)}
+                helperText={isError(errors) && errors.login_error}
               />
               <Button variant="contained" type="submit" style={{ alignSelf: "end" }}>Sign In</Button>
             </Form>
@@ -43,6 +47,9 @@ export default function LoginPage() {
                 label="New username"
                 name="name"
                 variant="outlined"
+                required
+                error={isError(errors)}
+                helperText={isError(errors) && errors.register_error}
               />
               <Button variant="contained" type="submit" style={{ alignSelf: "end" }}>Register</Button>
             </Form>
@@ -51,4 +58,13 @@ export default function LoginPage() {
       </Box>
     </>
   )
+}
+
+// returns true if errors is an object
+function isError(errors: LoginError | Response): errors is LoginError {
+  if (errors === undefined) {
+    return false;
+  } else {
+    return typeof (errors as Response).redirected !== 'boolean';
+  }
 }
