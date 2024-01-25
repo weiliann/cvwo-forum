@@ -11,12 +11,12 @@
 The web forum is built with React on the frontend, and uses Ruby on Rails on the backend which serves the API endpoint
 
 ### Getting Started
-1. From the project folder (cvwo-forum) the rails server can be started with the command:
+1. After cloning the repo execute this command to setup the rails server
   ```
-  rails s
+  cd cvwo-forum && rails db:migrate && rails db:seed && rails s
   ```
 
-2. With another terminal, cd to cvwo-forum/ and the web page can be run with the command:
+2. With another terminal, cd to project folder (cvwo-forum) and the web page can be run with the command:
   ```
   cd frontend && npm install && npm run dev
   ```
