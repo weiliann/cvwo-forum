@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { postsLoader, postCommentLoader, submitPost, destroyAction, editPost, newComment, handleAccount } from "./actions/postActions.tsx"
+import { postCommentsLoader, postsLoader } from './api/loaders/postLoader.tsx'
+import { destroyAction, editPost, newComment, submitNewPost } from './api/actions/postActions.tsx'
+import { handleAccount } from './api/actions/loginActions.tsx'
+
 import PostComment from './components/PostComment.tsx'
 import SubmitForm from './components/SubmitForm.tsx'
 import EditPage from './components/EditPage.tsx'
@@ -18,7 +21,7 @@ const router = createBrowserRouter([
   {
     path: "/comments/:id",
     element: <PostComment />, 
-    loader: postCommentLoader,
+    loader: postCommentsLoader,
     children: [
       {
         path: "destroy",
@@ -39,7 +42,7 @@ const router = createBrowserRouter([
   {
     path: "/submit",
     element: <SubmitForm />,
-    action: submitPost,
+    action: submitNewPost,
   },
   {
     path: "/login",
