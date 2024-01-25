@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 
+// Handles login and logout
 export default function Account() {
   const isLoggedIn = typeof sessionStorage.getItem("user_id") === 'string';
   const name = sessionStorage.getItem("user_name") || 'Guest';

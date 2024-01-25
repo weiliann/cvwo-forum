@@ -7,10 +7,10 @@ import { postCommentsLoader, postsLoader } from './api/loaders/postLoader.tsx'
 import { destroyAction, editPost, newComment, submitNewPost } from './api/actions/postActions.tsx'
 import { handleAccount } from './api/actions/loginActions.tsx'
 
-import PostComment from './components/PostComment.tsx'
-import SubmitForm from './components/SubmitForm.tsx'
-import EditPage from './components/EditPage.tsx'
-import LoginPage from './components/LoginPage.tsx'
+import PostComment from './components/thread/PostComment.tsx'
+import SubmitForm from './components/postForm/SubmitForm.tsx'
+import EditPage from './components/postForm/EditPage.tsx'
+import LoginPage from './components/login/LoginPage.tsx'
 
 const router = createBrowserRouter([
   {

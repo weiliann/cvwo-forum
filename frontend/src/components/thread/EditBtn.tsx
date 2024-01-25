@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { PostParams } from "../types/PostParams";
+import { PostParams } from "../../types/PostParams";
 import { Button } from "@mui/material";
 
 export default function EditBtn({ postData }: {postData: PostParams}) {

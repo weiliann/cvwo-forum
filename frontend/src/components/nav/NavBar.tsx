@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Account from "./Account";
 import { AppBar, Toolbar, Button, Typography, ThemeProvider } from "@mui/material";
-import theme from "../theme";
+import theme from "../../theme";
 
 export default function NavBar() {
   return (

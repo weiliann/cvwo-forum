@@ -1,10 +1,9 @@
-import '../App.css'
 import DeleteBtn from './DeleteBtn';
 import EditBtn from './EditBtn';
-import type { PostParams } from '../types/PostParams';
+import type { PostParams } from '../../types/PostParams';
 import { Box, Container, Paper, Stack, Typography } from '@mui/material';
 
-// The head of the page
+// The post content
 function Post(postData: PostParams) {
   const session_id = sessionStorage.getItem("user_id");
   const cur_user_id = session_id ? parseInt(session_id, 10) : -1;

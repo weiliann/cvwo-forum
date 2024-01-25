@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom"
 import PostResponse from "./types/PostResponse";
-import PostCard from "./components/PostCard"
-import NavBar from "./components/NavBar";
+import PostCard from "./components/home/PostCard";
+import NavBar from "./components/nav/NavBar";
 import { useState } from "react";
 import { Box, Container, Stack, TextField, ThemeProvider } from "@mui/material";
 import theme from "./theme";

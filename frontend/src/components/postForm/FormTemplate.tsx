@@ -1,5 +1,5 @@
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
-import { PostData } from "../actions/postActions";
+import type { PostData } from "../../api/actions/actionTypes";
 
 type FormParams = {
   errors: PostData | Response
@@ -54,7 +54,7 @@ export default function FormTemplate({ errors, fields }: FormParams) {
           variant="outlined"
           sx={{ display: 'block' }}
           multiline
-          rows={4}
+          minRows={4}
           fullWidth
           error={isObj(errors) && !!errors?.body}
           helperText={isObj(errors) && errors.body}

@@ -1,12 +1,7 @@
 import { Paper, Stack, Typography } from "@mui/material"
 import { AccountCircle } from "@mui/icons-material"
 
-interface CommentProps {
-  comment_id: number,
-  body: string,
-  name: string,
-}
-
+// A comment on a post
 export default function Comment({ comment_id, body, name }: CommentProps) {
   return (
     <Paper elevation={4} >
@@ -19,4 +14,10 @@ export default function Comment({ comment_id, body, name }: CommentProps) {
       </Stack>
     </Paper>
   )
+}
+
+interface CommentProps {
+  comment_id: number,
+  body: string,
+  name: string,
 }

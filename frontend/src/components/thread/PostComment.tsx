@@ -1,12 +1,13 @@
 import { useLoaderData } from "react-router-dom";
-import { PostCommentResponse } from "../types/PostResponse";
+import { PostCommentResponse } from "../../types/PostResponse";
 import Post from "./Post";
 import Comment from "./Comment";
-import NavBar from "./NavBar";
+import NavBar from "../nav/NavBar";
 import NewCommentForm from "./NewCommentForm";
 import { Container, Stack, ThemeProvider } from "@mui/material";
-import theme from "../theme";
+import theme from "../../theme";
 
+// Composition of post with its comments
 function PostComment() {
   const { id: post_id, title, body, category, user: { name, id: user_id }, comments } = useLoaderData() as PostCommentResponse;
 

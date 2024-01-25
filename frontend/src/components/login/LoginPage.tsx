@@ -1,7 +1,7 @@
 import { Form, useActionData } from "react-router-dom";
-import NavBar from "./NavBar";
+import NavBar from "../nav/NavBar";
 import { Box, Button, Divider, Stack, TextField, Typography } from "@mui/material";
-import type { LoginError } from "../actions/postActions"
+import type { LoginError } from "../../api/actions/actionTypes";
 
 export default function LoginPage() {
   const errors = useActionData() as LoginError | Response

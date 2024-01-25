@@ -1,7 +1,7 @@
 import { Form, useActionData, useLocation } from "react-router-dom"
-import NavBar from "./NavBar";
+import NavBar from "../nav/NavBar";
 import FormTemplate from "./FormTemplate";
-import { PostData } from "../actions/postActions";
+import { PostData } from "../../api/actions/actionTypes";
 import { Box } from "@mui/material";
 
 export default function EditPage() {

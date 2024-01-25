@@ -1,4 +1,4 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { useFetcher } from "react-router-dom"
 
@@ -6,7 +6,6 @@ export default function NewCommentForm() {
   const [value, setValue] = useState('');
   const fetcher = useFetcher();
   const user_id = sessionStorage.getItem("user_id");
-
   const commentForm = (
     <fetcher.Form method="POST" action="newComment" onSubmit={()=>setValue('')}>
       <Stack direction="row" gap={2}>
@@ -23,6 +22,6 @@ export default function NewCommentForm() {
       </Stack>
   </fetcher.Form> 
   )
-
-  return (user_id ? commentForm : "Log in to start sharing comments")
+  const errMsg = <Typography color={"error"}>Log in to start sharing comments</Typography>
+  return (user_id ? commentForm : errMsg)
 }

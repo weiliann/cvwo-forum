@@ -1,6 +1,6 @@
 import { Form, useActionData } from "react-router-dom";
-import NavBar from "./NavBar";
-import { PostData } from "../actions/postActions";
+import NavBar from "../nav/NavBar";
+import type { PostData } from "../../api/actions/actionTypes";
 import FormTemplate from "./FormTemplate";
 import { Container } from "@mui/material";
 
