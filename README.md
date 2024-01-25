@@ -16,7 +16,7 @@ The web forum is built with React on the frontend, and uses Ruby on Rails on the
   rails s
   ```
 
-2. The webpage can then be run from the 'frontend/' directory
+2. The webpage can then be run from the 'frontend/' directory with another terminal
   ```
   cd frontend && npm run dev
   ```
