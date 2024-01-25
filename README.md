@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Author
+* Tan Wei Lian
 
-Things you may want to cover:
+### System Requirements
+1. Ruby (3.2.2)
+2. Ruby on Rails (7.1.2)
+3. SQLite3
 
-* Ruby version
+The web forum is built with React on the frontend, and uses Ruby on Rails on the backend which serves the API endpoint
 
-* System dependencies
+### Getting Started
+1. The rails server needs to be started first with the command:
+  ```
+  rails s
+  ```
 
-* Configuration
+2. The webpage can then be run from the 'frontend/' directory
+  ```
+  cd frontend && npm run dev
+  ```
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
