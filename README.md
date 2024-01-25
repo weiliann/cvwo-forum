@@ -11,7 +11,7 @@
 The web forum is built with React on the frontend, and uses Ruby on Rails on the backend which serves the API endpoint
 
 ### Getting Started
-1. The rails server needs to be started first with the command:
+1. From the project folder (cvwo-forum) the rails server can be started with the command:
   ```
   rails s
   ```
