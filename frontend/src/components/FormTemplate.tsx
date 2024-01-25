@@ -1,6 +1,5 @@
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
 import { PostData } from "../actions/postActions";
-import { ThemeContext } from "@emotion/react";
 
 type FormParams = {
   errors: PostData | Response
@@ -25,9 +24,15 @@ export default function FormTemplate({ errors, fields }: FormParams) {
             defaultValue={fields && fields.title}
             variant="outlined"
             sx={{ display: 'block' }}
-            error={isObj(errors)}
-            helperText={isObj(errors) && errors.title}
+            error={isObj(errors) && !!errors?.title}
+            helperText={isObj(errors) ? errors.title : "Title must not exceed 200 characters in length."}
             fullWidth
+            InputProps={{
+              inputProps: {
+                minLength: 5,
+                maxLength: 200,
+              },
+            }}
           />
           <TextField
             id="post-cat"
@@ -36,7 +41,7 @@ export default function FormTemplate({ errors, fields }: FormParams) {
             defaultValue={fields && fields.category}
             variant="outlined"
             sx={{ display: 'block' }}
-            error={isObj(errors)}
+            error={isObj(errors) && !!errors?.category}
             helperText={isObj(errors) && errors.category}
             fullWidth
           />
@@ -51,7 +56,7 @@ export default function FormTemplate({ errors, fields }: FormParams) {
           multiline
           rows={4}
           fullWidth
-          error={isObj(errors)}
+          error={isObj(errors) && !!errors?.body}
           helperText={isObj(errors) && errors.body}
         />
         <Box
@@ -59,14 +64,15 @@ export default function FormTemplate({ errors, fields }: FormParams) {
             display: "flex",
             flexDirection: "column",
             alignItems: "end",
-
           }}
         >
           <Typography>
             <input type="hidden" name="user_id" value={user_id || ""} />
-            {user_id ? '' : <Typography color={"error"}>Log in to start posting</Typography>}
           </Typography>
-          <Button type="submit" variant="contained" >Submit</Button>
+          {user_id ? 
+            <Button type="submit" variant="contained">Submit</Button> :
+            <Typography color={"error"}>Log in to start posting</Typography>
+          }
         </Box>
       </Stack>
     </Container>

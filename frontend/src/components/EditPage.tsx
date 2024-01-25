@@ -2,16 +2,17 @@ import { Form, useActionData, useLocation } from "react-router-dom"
 import NavBar from "./NavBar";
 import FormTemplate from "./FormTemplate";
 import { PostData } from "../actions/postActions";
+import { Box } from "@mui/material";
+
 export default function EditPage() {
   const { state } = useLocation();
   const errors = useActionData() as PostData | Response
-  const postData = state.postData
   return (
-    <>
+    <Box sx={{ height: "100vh" }}>
       <NavBar />
-      <Form method="PATCH" action={postData.post_id}>
-        <FormTemplate errors={errors} fields={postData}/>
+      <Form method="PATCH">
+        <FormTemplate errors={errors} fields={state.postData}/>
       </Form>
-    </>
+    </Box>
   )
 }

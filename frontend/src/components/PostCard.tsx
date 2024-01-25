@@ -1,21 +1,26 @@
-import { Box, Paper, Typography } from '@mui/material';
-import '../App.css';
+import { Box, Button, Paper, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 type PostCardParams = {
   post_id: number,
   title: string,
-  name: string
+  name: string,
+  category: string,
+  body: string,
 }
+
 // post cards displayed on index page linking to individual posts
 function PostCard(params: PostCardParams) {
-  const { post_id, title, name } = params;
+  const { post_id, title, name, category, body } = params;
+
   return (
     <Paper
       elevation={16}
       sx={{
         p: 2,
-        height: '10vh',
+        minHeight: '10vh',
+        height: 'auto',
+        minWidth: 'min-content',
         display: 'flex',
         flexGrow: 1,
       }}
@@ -27,17 +32,23 @@ function PostCard(params: PostCardParams) {
         <Box 
           sx={{
             height: '100%',
+            // maxHeight: "15vh",
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
           }}
         >
-          <Typography variant='h5'>
+          <Typography variant='body2' >
             Posted by: {name}
           </Typography>
-          <Typography variant='h3'>
-            Title: {title}
+
+          <Typography variant='h5'>
+            Title: {title} {<Button size="small" variant="contained" type="button" sx={{ width: "fit-content" }}>{category}</Button>}
           </Typography>
+          <Typography width="30vw" noWrap>
+            {body}
+          </Typography>
+
         </Box>
       </Link>
     </Paper>

@@ -8,15 +8,7 @@ export default function LoginPage() {
   return (
     <>
       <NavBar />
-      <Box
-        sx={{
-          mt: 10,
-          height: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center"
-        }}
-      >
+      <Box sx={{ mt: 10, height: "100vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Stack
           spacing={3}
           sx={{ width: "50vw" }}
@@ -33,7 +25,7 @@ export default function LoginPage() {
                 name="name"
                 variant="outlined"
                 required
-                error={isError(errors)}
+                error={isError(errors) && !!errors.login_error}
                 helperText={isError(errors) && errors.login_error}
               />
               <Button variant="contained" type="submit" style={{ alignSelf: "end" }}>Sign In</Button>
@@ -48,7 +40,7 @@ export default function LoginPage() {
                 name="name"
                 variant="outlined"
                 required
-                error={isError(errors)}
+                error={isError(errors) && !!errors.register_error}
                 helperText={isError(errors) && errors.register_error}
               />
               <Button variant="contained" type="submit" style={{ alignSelf: "end" }}>Register</Button>

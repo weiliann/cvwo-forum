@@ -48,12 +48,12 @@ export const editPost: ActionFunction = async({ request, params }) => {
   });
   // return null;
   if (response.ok) {
-    return redirect(`/comments/${postData.user_id}`);
+    return redirect(`/comments/${params.id}`);
   } else {
     // refactor in future
     const res = await response.json() ;
     console.log(res);
-    return false; 
+    return redirect(`/edit/${params.id}` );
   }
 }
 
@@ -96,7 +96,7 @@ export const newComment: ActionFunction = async({ request, params }) => {
   const postData = Object.fromEntries(formData);
   const errors = hasErrors(postData);
   if (errors) return errors;
-  const response = await fetch("http://localhost:3000/comments", {
+  await fetch("http://localhost:3000/comments", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -130,8 +130,8 @@ export const handleAccount: ActionFunction = async({ request }) => {
         body: JSON.stringify(postData)
       });
   }
-  const json_response = await response.json() as {id: number, name: string[]};
   // response is null if invalid login, will have some errors when trying to register with existing username  
+  const json_response = await response.json() as {id: number, name: string[]};
   
   if (json_response === null) {
     // sets error msg for invalid login
@@ -146,7 +146,9 @@ export const handleAccount: ActionFunction = async({ request }) => {
     return errors;
   } else {
     user_id = json_response.id.toString();
+    const user_name = json_response.name.toString();
     sessionStorage.setItem('user_id', user_id)
+    sessionStorage.setItem('user_name', user_name)
     return redirect("/");
   }
 }
