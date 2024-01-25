@@ -16,9 +16,9 @@ The web forum is built with React on the frontend, and uses Ruby on Rails on the
   rails s
   ```
 
-2. The webpage can then be run from the 'frontend/' directory with another terminal
+2. With another terminal, cd to cvwo-forum/ and the web page can be run with the command:
   ```
-  cd frontend && npm run dev
+  cd frontend && npm install && npm run dev
   ```
 
 
