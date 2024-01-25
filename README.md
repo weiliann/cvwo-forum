@@ -21,4 +21,6 @@ The web forum is built with React on the frontend, and uses Ruby on Rails on the
   cd frontend && npm install && npm run dev
   ```
 
+3. The webpage is visible at "http://localhost:5173/"
+
 
